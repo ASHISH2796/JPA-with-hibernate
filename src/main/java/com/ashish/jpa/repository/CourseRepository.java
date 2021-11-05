@@ -37,4 +37,28 @@ public class CourseRepository {
 		Course objCourse = findById(id);
 		em.remove(objCourse);
 	}
+	// demo method 
+	// flush : Synchronize the persistence context to the underlying database
+	// detach : Remove the given entity from the persistence context
+	// clear :  Clear the persistence context, causing all managed entities to become detached
+	public void demoEntitymanager() {
+		Course objCourse = new Course("WebService in 100 steps.");
+		em.persist(objCourse);
+		em.flush();
+		//em.detach(objCourse);
+		//em.clear();
+		
+		Course objCourse1 = new Course("Angular+2 in 100 steps.");
+		em.persist(objCourse1);
+		em.flush();
+		//em.detach(objCourse1);
+		//em.clear();
+		
+		em.clear();
+		objCourse.setName("WebService in 100 steps - Updated");
+		em.flush();
+		
+		objCourse1.setName("Angular+2 in 100 steps - Updated");
+		em.flush();
+	}
 }

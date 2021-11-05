@@ -1,4 +1,4 @@
-package com.ashish.jpa;
+package com.ashish.jpa.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,8 +11,13 @@ import org.springframework.test.annotation.DirtiesContext;
 import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.repository.CourseRepository;
 
-@SpringBootTest(classes=JpaWithHibernateApplication.class)
-class JpaWithHibernateApplicationTest {
+@SpringBootTest(classes=CourseRepositoryTest.class)
+
+/**
+ * @author Ashish Gupta
+ *
+ */
+class CourseRepositoryTest {
 
 	@Autowired
 	private CourseRepository courseRepository;
@@ -51,4 +56,12 @@ class JpaWithHibernateApplicationTest {
 		Course objUpdatedCourse = courseRepository.findById(1002l);
 		assertEquals("Hibernate -in 50 steps", objUpdatedCourse.getName());
 	}
+	
+	@Test
+	@DirtiesContext
+	@DisplayName("To call detach , flush, clear method") 
+	void demoEntityManager() {
+		courseRepository.demoEntitymanager();
+	}
 }
+

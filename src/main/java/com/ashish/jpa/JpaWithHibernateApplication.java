@@ -29,6 +29,8 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		log.info(obj.toString());
 		
 		//repo.deleteById(1001l);
+		
+		repo.demoEntitymanager();
 	  
 	}
 	
