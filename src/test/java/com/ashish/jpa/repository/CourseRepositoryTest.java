@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.ashish.jpa.JpaWithHibernateApplication;
 import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.repository.CourseRepository;
 
-@SpringBootTest(classes=CourseRepositoryTest.class)
+@SpringBootTest(classes=JpaWithHibernateApplication.class)
 
 /**
  * @author Ashish Gupta
@@ -64,4 +65,5 @@ class CourseRepositoryTest {
 		courseRepository.demoEntitymanager();
 	}
 }
+
 

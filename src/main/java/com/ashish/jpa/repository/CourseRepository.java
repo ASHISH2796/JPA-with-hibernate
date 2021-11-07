@@ -41,6 +41,7 @@ public class CourseRepository {
 	// flush : Synchronize the persistence context to the underlying database
 	// detach : Remove the given entity from the persistence context
 	// clear :  Clear the persistence context, causing all managed entities to become detached
+	// refresh : Refresh the state of the instance from the database, overwriting changes made to the entity, if any.
 	public void demoEntitymanager() {
 		Course objCourse = new Course("WebService in 100 steps.");
 		em.persist(objCourse);
@@ -54,11 +55,13 @@ public class CourseRepository {
 		//em.detach(objCourse1);
 		//em.clear();
 		
-		em.clear();
+		//em.clear();
 		objCourse.setName("WebService in 100 steps - Updated");
-		em.flush();
+		//em.flush();
 		
 		objCourse1.setName("Angular+2 in 100 steps - Updated");
+		
+		em.refresh(objCourse);
 		em.flush();
 	}
 }

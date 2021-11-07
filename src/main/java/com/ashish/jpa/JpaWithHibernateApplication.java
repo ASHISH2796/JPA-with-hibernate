@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.repository.CourseRepository;
+import com.ashish.jpa.repository.JPQLCourseRepository;
 
 
 @SpringBootApplication
@@ -17,6 +18,9 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 	
 	@Autowired
 	CourseRepository repo;
+	
+	@Autowired
+	JPQLCourseRepository jpqlrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaWithHibernateApplication.class, args);
@@ -31,7 +35,14 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		//repo.deleteById(1001l);
 		
 		repo.demoEntitymanager();
-	  
+		
+		log.info("        ---------------------------------------------------------       ");
+		
+		jpqlrepo.findByid();
+		
+		jpqlrepo.findById_type();
+		
+		jpqlrepo.findById_where();
 	}
 	
 	
