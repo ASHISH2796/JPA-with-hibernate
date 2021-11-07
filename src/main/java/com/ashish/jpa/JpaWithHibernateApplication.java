@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.repository.CourseRepository;
 import com.ashish.jpa.repository.JPQLCourseRepository;
+import com.ashish.jpa.repository.JPQLNamedQueriesCourseRepository;
+import com.ashish.jpa.repository.NativeQueryCourseRepository;
 
 
 @SpringBootApplication
@@ -21,6 +23,12 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 	
 	@Autowired
 	JPQLCourseRepository jpqlrepo;
+	
+	@Autowired
+	JPQLNamedQueriesCourseRepository jpqlNamedQueryrepo;
+	
+	@Autowired
+	NativeQueryCourseRepository nativeQueryrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaWithHibernateApplication.class, args);
@@ -37,12 +45,21 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		repo.demoEntitymanager();
 		
 		log.info("        ---------------------------------------------------------       ");
-		
 		jpqlrepo.findByid();
-		
 		jpqlrepo.findById_type();
-		
 		jpqlrepo.findById_where();
+		
+		log.info("        ----------------------------Named Query -----------------------------       ");
+		jpqlNamedQueryrepo.findByid();
+		jpqlNamedQueryrepo.findById_type();
+		jpqlNamedQueryrepo.findById_where();
+		
+		log.info("        ----------------------------Native Query -----------------------------       ");
+		nativeQueryrepo.findByid();
+		nativeQueryrepo.findById_named_param(1001l);
+		nativeQueryrepo.findById_positional_param(1001l);
+		nativeQueryrepo.updateCourseById();
+		
 	}
 	
 	
