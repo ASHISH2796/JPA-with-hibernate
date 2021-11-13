@@ -12,6 +12,7 @@ import com.ashish.jpa.repository.CourseRepository;
 import com.ashish.jpa.repository.JPQLCourseRepository;
 import com.ashish.jpa.repository.JPQLNamedQueriesCourseRepository;
 import com.ashish.jpa.repository.NativeQueryCourseRepository;
+import com.ashish.jpa.repository.StudentRepository;
 
 
 @SpringBootApplication
@@ -30,13 +31,17 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 	@Autowired
 	NativeQueryCourseRepository nativeQueryrepo;
 	
+	@Autowired
+	StudentRepository studentrepo;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaWithHibernateApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-	    repo.save(new Course("Spring Framework -in 100 steps"));
+	    
+		repo.save(new Course("Spring Framework -in 100 steps"));
 		Course obj =repo.findById(1001L);
 		log.info(obj.toString());
 		
@@ -59,6 +64,9 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		nativeQueryrepo.findById_named_param(1001l);
 		nativeQueryrepo.findById_positional_param(1001l);
 		nativeQueryrepo.updateCourseById();
+		
+		log.info("        ----------------------------One to one mapping-----------------------------       ");
+		studentrepo.saveStudentWithPassport();
 		
 	}
 	
