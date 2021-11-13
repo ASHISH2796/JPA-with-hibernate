@@ -2,6 +2,8 @@ package com.ashish.jpa.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ashish.jpa.JpaWithHibernateApplication;
+import com.ashish.jpa.entity.Passport;
 import com.ashish.jpa.entity.Student;
 
 @SpringBootTest(classes=JpaWithHibernateApplication.class)
@@ -26,6 +29,9 @@ class StudentRepositoryTest {
 	@Autowired
 	private StudentRepository studentRepository;
 	
+	@Autowired
+	EntityManager em;
+	
 	@Test
 	@Transactional
 	@DisplayName("To retrive Student detail with passport.")
@@ -34,6 +40,17 @@ class StudentRepositoryTest {
 		assertNotNull(objStudent);
 		log.info("Student -> {}",objStudent);
 		log.info("Passport -> {}",objStudent.getPassport());
+	}
+	
+	@Test
+	@Transactional
+	@DisplayName("To Passport detail with associate student data.")
+	void retrivePassportwithAssociateStudent() {
+		Passport objPassport =em.find(Passport.class,4001l);
+		assertNotNull(objPassport);
+		log.info("Passport -> {}",objPassport);
+		log.info("Student -> {}",objPassport.getStudent());
+		//log.info("Passport -> {}" ,em.createQuery("from Passport",Passport.class).getResultList());
 	}
 }
 
