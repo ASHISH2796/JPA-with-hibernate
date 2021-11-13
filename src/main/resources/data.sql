@@ -10,6 +10,6 @@ insert into student(id, name,created_date,last_updated_date,passport_id) values(
 insert into student(id, name,created_date,last_updated_date,passport_id) values(2002,'Akash', sysdate(), sysdate(),4002);
 insert into student(id, name,created_date,last_updated_date,passport_id) values(2003,'Prashant', sysdate(), sysdate(),4003);
 
-insert into review(id,rating,description,created_date,last_updated_date) values(5001,'5','Good course', sysdate(), sysdate());
-insert into review(id,rating,description,created_date,last_updated_date) values(5002,'3','Average course', sysdate(), sysdate());
-insert into review(id,rating,description,created_date,last_updated_date) values(5003,'4',' Good content', sysdate(), sysdate());
+insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5001,'5','Good course',1001 ,sysdate(), sysdate());
+insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5002,'3','Average course',1001, sysdate(), sysdate());
+insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5003,'4',' Good content',1003, sysdate(), sysdate());

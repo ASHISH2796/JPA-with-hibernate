@@ -4,17 +4,24 @@ package com.ashish.jpa.repository;
  *
  */
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ashish.jpa.entity.Course;
+import com.ashish.jpa.entity.Review;
 
 @Repository
 @Transactional
 public class CourseRepository {
+	
+	private Logger log =LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private EntityManager em;
@@ -63,5 +70,17 @@ public class CourseRepository {
 		
 		em.refresh(objCourse);
 		em.flush();
+	}
+	
+	public void addReviewInCourse(Long course_id,List<Review> reviews) {
+		Course objCourse = findById(course_id);
+		log.info("List of reviews -> {}",objCourse.getListOfReviews());
+		
+		for(Review review : reviews) {
+			
+			review.setCourse(objCourse);
+			objCourse.addReview(review);
+			em.persist(review);
+		}		
 	}
 }

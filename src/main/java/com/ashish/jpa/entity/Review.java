@@ -6,10 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -22,6 +24,9 @@ public class Review {
 	private String rating;
 	
 	private String description;
+	
+	@ManyToOne()
+	private Course course;
 	
 	@CreationTimestamp
 	private LocalDateTime createdDate;
@@ -84,6 +89,20 @@ public class Review {
 	 */
 	public void setRating(String rating) {
 		this.rating = rating;
+	}
+
+	/**
+	 * @return the course
+	 */
+	public Course getCourse() {
+		return course;
+	}
+
+	/**
+	 * @param course the course to set
+	 */
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	/* (non-Javadoc)

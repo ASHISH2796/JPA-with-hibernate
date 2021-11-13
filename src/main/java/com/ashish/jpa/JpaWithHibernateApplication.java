@@ -1,5 +1,8 @@
 package com.ashish.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ashish.jpa.entity.Course;
+import com.ashish.jpa.entity.Review;
 import com.ashish.jpa.repository.CourseRepository;
 import com.ashish.jpa.repository.JPQLCourseRepository;
 import com.ashish.jpa.repository.JPQLNamedQueriesCourseRepository;
@@ -67,6 +71,13 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		
 		log.info("        ----------------------------One to one mapping-----------------------------       ");
 		studentrepo.saveStudentWithPassport();
+		
+		log.info("        ----------------------------One to Many mapping-----------------------------       ");
+		
+		List<Review> reviews =new ArrayList<>();
+		reviews.add(new Review("5","Awesome content."));
+		reviews.add(new Review("4","Higly informative."));
+		repo.addReviewInCourse(1003l,reviews );
 		
 	}
 	
