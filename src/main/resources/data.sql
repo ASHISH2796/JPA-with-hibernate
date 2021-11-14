@@ -2,9 +2,9 @@ insert into course(id, name,created_date,last_updated_date) values(1001,'JPA -in
 insert into course(id, name,created_date,last_updated_date) values(1002,'Hibernate -in 100 steps', sysdate(), sysdate());
 insert into course(id, name,created_date,last_updated_date) values(1003,'Spring Boot -in 100 steps', sysdate(), sysdate());
 
-insert into passport(id, number,created_date,last_updated_date) values(4001,'E0MH001', sysdate(), sysdate());
-insert into passport(id, number,created_date,last_updated_date) values(4002,'E0MH002', sysdate(), sysdate());
-insert into passport(id, number,created_date,last_updated_date) values(4003,'E0MH003', sysdate(), sysdate());
+insert into passport(id, number,created_date,last_updated_date) values(4001,'E0MH101', sysdate(), sysdate());
+insert into passport(id, number,created_date,last_updated_date) values(4002,'E0MH102', sysdate(), sysdate());
+insert into passport(id, number,created_date,last_updated_date) values(4003,'E0MH203', sysdate(), sysdate());
 
 insert into student(id, name,created_date,last_updated_date,passport_id) values(2001,'Ashish', sysdate(), sysdate(),4001);
 insert into student(id, name,created_date,last_updated_date,passport_id) values(2002,'Akash', sysdate(), sysdate(),4002);

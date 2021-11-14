@@ -89,7 +89,7 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		
 		log.info("        ---------------------------- Many to Many mapping-----------------------------       ");
 		studentrepo.insertStudentWithCourse(new Student("Jill"), new Course("Micorservice in 50 steps."));
-		*/
+		
 		
 		log.info("        ---------------------------- Inheritance -----------------------------       ");
 		employeeRepository.insert(new PartTimeEmployee("Jack",new BigDecimal(100)));
@@ -99,7 +99,32 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		log.info("        ---------------------------- Mapped -----------------------------       ");
 		log.info("List of Full time employee -> {}",employeeRepository.retriveFullTimeEmployee());
 		log.info("List of Part time employee -> {}",employeeRepository.retrivePartTimeEmployee());
+		*/
+		log.info("        ---------------------------- JPQL - query to fetch course without student  -----------------------------       ");
+		jpqlrepo.findById_without_student();
 		
+		log.info("        ---------------------------- JPQL - query to fetch course atleast 2  student  ----------------------------- ");
+		jpqlrepo.findById_atleast2_student();
+		
+		log.info("        ---------------------------- JPQL - query to fetch course order by student count  student  ----------------------------- ");
+		jpqlrepo.findByIdOrderbyStudent();
+		
+		
+		log.info("        ---------------------------- JPQL - query to fetch student based on pattern in passport----------------------------- ");
+		//LIKE
+		// BETWEEN 100 AND 1000
+		//IS NULL
+		//UPPER ,LOWER, TRIM, LENGTH
+		
+		jpqlrepo.findStudentBycertainpattern();
+		
+		log.info("        ---------------------------- JPQL - query  USING JOIN----------------------------- ");
+		//JOIN
+		jpqlrepo.join();
+		//LEFT JOIN
+		jpqlrepo.leftJoin();
+		//CROSS JOIN
+		jpqlrepo.crossJoin();
 	}
 	
 	

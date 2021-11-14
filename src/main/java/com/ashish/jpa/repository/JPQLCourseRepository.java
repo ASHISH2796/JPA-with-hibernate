@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ashish.jpa.entity.Course;
+import com.ashish.jpa.entity.Student;
 
 /**
  * @author Ashish Gupta
@@ -44,5 +45,53 @@ public class JPQLCourseRepository {
 		TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c WHERE c.name like '%100'",Course.class);
 		List<Course> data = query.getResultList();
 		log.info("SELECT c FROM Course c WHERE c.name like '%100' -> {} ", data);
+	}
+	
+	public void findById_without_student() {
+		TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c WHERE c.students is empty",Course.class);
+		List<Course> data = query.getResultList();
+		log.info("Result list' -> {} ", data);
+	}
+	
+	public void findById_atleast2_student() {
+		TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c WHERE size(c.students) >= 2 ",Course.class);
+		List<Course> data = query.getResultList();
+		log.info("Result list' -> {} ", data);
+	}
+
+	public void findByIdOrderbyStudent() {
+		TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c order by  size(c.students) desc ",Course.class);
+		List<Course> data = query.getResultList();
+		log.info("Result list' -> {} ", data);
+	}
+	
+	public void findStudentBycertainpattern() {
+		TypedQuery<Student> query = em.createQuery("SELECT s FROM Student s where s.passport.number like '%MH1%'  ",Student.class);
+		List<Student> data = query.getResultList();
+		log.info("Result list' -> {} ", data);
+	}
+	
+	public void join() {
+		Query query = em.createQuery("SELECT c,s FROM Course c JOIN c.students s");
+		List<Object[]> data = query.getResultList();
+		for(Object[] result : data ) {
+			log.info("Course => {} and Student => {} ", result[0],result[1]);
+		}
+	}
+	
+	public void leftJoin() {
+		Query query = em.createQuery("SELECT c,s FROM Course c LEFT JOIN c.students s");
+		List<Object[]> data = query.getResultList();
+		for(Object[] result : data ) {
+			log.info("Course => {} and Student => {} ", result[0],result[1]);
+		}
+	}
+	
+	public void crossJoin() {
+		Query query = em.createQuery("SELECT c,s FROM Course c ,Student s");
+		List<Object[]> data = query.getResultList();
+		for(Object[] result : data ) {
+			log.info("Course => {} and Student => {} ", result[0],result[1]);
+		}
 	}
 }
