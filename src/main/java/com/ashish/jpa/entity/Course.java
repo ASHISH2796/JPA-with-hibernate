@@ -1,12 +1,14 @@
 package com.ashish.jpa.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,7 +33,10 @@ public class Course {
 	private String name;
 	
 	@OneToMany(mappedBy="course")
-	private List<Review> listOfReviews;
+	private List<Review> listOfReviews = new ArrayList<>();
+	
+	@ManyToMany(mappedBy="courses")
+	private List<Student> students =new ArrayList<>();
 	
 	@CreationTimestamp
 	private LocalDateTime createdDate;
@@ -103,6 +108,29 @@ public class Course {
 
 	public void removeReview(Review review) {
 		this.listOfReviews.remove(review);
+	}
+	
+	
+	/**
+	 * @return the students
+	 */
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	/**
+	 * @param students the students to set
+	 */
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public void addStudent(Student student) {
+		this.students.add(student);
+	}
+
+	public void removeStudent(Student student) {
+		this.students.remove(student);
 	}
 	
 	/* (non-Javadoc)

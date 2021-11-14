@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.entity.Review;
+import com.ashish.jpa.entity.Student;
 import com.ashish.jpa.repository.CourseRepository;
 import com.ashish.jpa.repository.JPQLCourseRepository;
 import com.ashish.jpa.repository.JPQLNamedQueriesCourseRepository;
@@ -78,6 +79,9 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		reviews.add(new Review("5","Awesome content."));
 		reviews.add(new Review("4","Higly informative."));
 		repo.addReviewInCourse(1003l,reviews );
+		
+		log.info("        ---------------------------- Many to Many mapping-----------------------------       ");
+		studentrepo.insertStudentWithCourse(new Student("Jill"), new Course("Micorservice in 50 steps."));
 		
 	}
 	

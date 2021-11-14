@@ -13,3 +13,7 @@ insert into student(id, name,created_date,last_updated_date,passport_id) values(
 insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5001,'5','Good course',1001 ,sysdate(), sysdate());
 insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5002,'3','Average course',1001, sysdate(), sysdate());
 insert into review(id,rating,description,course_id,created_date,last_updated_date) values(5003,'4',' Good content',1003, sysdate(), sysdate());
+
+insert into student_course(student_id,course_id) values(2001,1001);
+insert into student_course(student_id,course_id) values(2002,1001);
+insert into student_course(student_id,course_id) values(2003,1003);

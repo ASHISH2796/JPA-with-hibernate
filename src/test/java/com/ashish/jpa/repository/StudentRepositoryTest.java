@@ -52,6 +52,16 @@ class StudentRepositoryTest {
 		log.info("Student -> {}",objPassport.getStudent());
 		//log.info("Passport -> {}" ,em.createQuery("from Passport",Passport.class).getResultList());
 	}
+	
+	@Test
+	@Transactional
+	@DisplayName("To fetch student detail with all course")
+	void retriveStudentWithAssociateCourse() {
+		Student objStudent =em.find(Student.class,2001l);
+		assertNotNull(objStudent);
+		log.info("Student -> {}",objStudent);
+		log.info("Course -> {}", objStudent.getCourses());
+	}
 }
 
 

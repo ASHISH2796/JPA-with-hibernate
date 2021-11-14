@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ashish.jpa.entity.Course;
 import com.ashish.jpa.entity.Passport;
 import com.ashish.jpa.entity.Student;
 
@@ -72,5 +73,14 @@ public class StudentRepository {
 		Student objStudent =new Student("Bharat");
 		objStudent.setPassport(objPassport);
 		em.persist(objStudent);
+	}
+	
+	public void insertStudentWithCourse(Student student,Course course) {
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		em.persist(student);
+		em.persist(course);
 	}
 }
