@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.DirtiesContext;
 
 import com.ashish.jpa.JpaWithHibernateApplication;
 import com.ashish.jpa.entity.Course;
@@ -72,5 +73,20 @@ class CourseSpringDataRepoTest {
 		Page<Course> secondPage = repo.findAll(secondPageable);
 		log.info("second page :=>{}",secondPage.getContent());
 		  
+	}
+	
+	@Test
+	@DirtiesContext
+	@DisplayName("Custom query implementation")
+	void testCustomeQueryImpl() {
+		log.info(" findByName :=>{}",repo.findByName("Hibernate -in 100 steps"));
+		log.info(" queryByName :=>{}",repo.queryByName("Hibernate -in 100 steps"));
+		log.info(" findByNameAndId :=>{}",repo.findByNameAndId("Hibernate -in 100 steps",1002l));
+		log.info(" CountByName :=>{}",repo.countByName("Hibernate -in 100 steps"));
+		log.info(" findByNameOrderByIdDesc :=>{}",repo.findByNameOrderByIdDesc("Hibernate -in 100 steps"));
+		log.info(" customQuery :=>{}",repo.customQuery());
+		log.info(" customNativeQuery :=>{}",repo.customNativeQuery());
+		log.info(" customNamedQuery :=>{}",repo.customNamedQuery());
+		
 	}
 }
