@@ -1,5 +1,6 @@
 package com.ashish.jpa;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ashish.jpa.entity.Course;
+import com.ashish.jpa.entity.FullTimeEmployee;
+import com.ashish.jpa.entity.PartTimeEmployee;
 import com.ashish.jpa.entity.Review;
 import com.ashish.jpa.entity.Student;
 import com.ashish.jpa.repository.CourseRepository;
+import com.ashish.jpa.repository.EmployeeRepository;
 import com.ashish.jpa.repository.JPQLCourseRepository;
 import com.ashish.jpa.repository.JPQLNamedQueriesCourseRepository;
 import com.ashish.jpa.repository.NativeQueryCourseRepository;
@@ -39,13 +43,16 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 	@Autowired
 	StudentRepository studentrepo;
 	
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(JpaWithHibernateApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-	    
+	    /*
 		repo.save(new Course("Spring Framework -in 100 steps"));
 		Course obj =repo.findById(1001L);
 		log.info(obj.toString());
@@ -82,6 +89,16 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		
 		log.info("        ---------------------------- Many to Many mapping-----------------------------       ");
 		studentrepo.insertStudentWithCourse(new Student("Jill"), new Course("Micorservice in 50 steps."));
+		*/
+		
+		log.info("        ---------------------------- Inheritance -----------------------------       ");
+		employeeRepository.insert(new PartTimeEmployee("Jack",new BigDecimal(100)));
+		employeeRepository.insert(new FullTimeEmployee("Jill",new BigDecimal(5000)));
+		//log.info("List of Full time employee -> {}",employeeRepository.retriveAllEmployee());
+		
+		log.info("        ---------------------------- Mapped -----------------------------       ");
+		log.info("List of Full time employee -> {}",employeeRepository.retriveFullTimeEmployee());
+		log.info("List of Part time employee -> {}",employeeRepository.retrivePartTimeEmployee());
 		
 	}
 	
