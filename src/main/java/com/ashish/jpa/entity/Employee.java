@@ -1,7 +1,6 @@
 package com.ashish.jpa.entity;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,8 +8,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)		
-public class Employee {
+@Inheritance(strategy=InheritanceType.JOINED)		
+public abstract class Employee {
 	
 	@Id
 	@GeneratedValue
@@ -60,9 +59,6 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-
 	
 	
 	/* (non-Javadoc)
