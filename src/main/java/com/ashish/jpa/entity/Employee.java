@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Inheritance(strategy=InheritanceType.JOINED)		
+@MappedSuperclass
+//@Entity
+//@Inheritance(strategy=InheritanceType.JOINED)		
 public abstract class Employee {
 	
 	@Id

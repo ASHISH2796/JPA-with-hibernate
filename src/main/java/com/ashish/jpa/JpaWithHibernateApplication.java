@@ -94,8 +94,11 @@ public class JpaWithHibernateApplication implements CommandLineRunner{
 		log.info("        ---------------------------- Inheritance -----------------------------       ");
 		employeeRepository.insert(new PartTimeEmployee("Jack",new BigDecimal(100)));
 		employeeRepository.insert(new FullTimeEmployee("Jill",new BigDecimal(5000)));
+		//log.info("List of Full time employee -> {}",employeeRepository.retriveAllEmployee());
 		
-		log.info("List of employee -> {}",employeeRepository.retriveAllEmployee());
+		log.info("        ---------------------------- Mapped -----------------------------       ");
+		log.info("List of Full time employee -> {}",employeeRepository.retriveFullTimeEmployee());
+		log.info("List of Part time employee -> {}",employeeRepository.retrivePartTimeEmployee());
 		
 	}
 	

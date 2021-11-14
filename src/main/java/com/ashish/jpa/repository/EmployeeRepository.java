@@ -31,8 +31,15 @@ public class EmployeeRepository {
 		 em.persist(emp);
 	}
 	
-	public List<Employee> retriveAllEmployee(){
+	/*public List<Employee> retriveAllEmployee(){
 		return em.createQuery("from Employee").getResultList();
 	}
+	*/
+	public List<Employee> retriveFullTimeEmployee(){
+		return em.createQuery("from FullTimeEmployee").getResultList();
+	}
 	
+	public List<Employee> retrivePartTimeEmployee(){
+		return em.createQuery("from PartTimeEmployee").getResultList();
+	}
 }
