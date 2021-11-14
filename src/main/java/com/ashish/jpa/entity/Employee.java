@@ -9,8 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)		
-@DiscriminatorColumn(name="Emp_type")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)		
 public class Employee {
 	
 	@Id
