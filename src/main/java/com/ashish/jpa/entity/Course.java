@@ -21,6 +21,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NamedQueries(
 		{
 			@NamedQuery(name="find_course_by_id",query="SELECT c FROM Course c"),
+			@NamedQuery(name="find_course_by_id_join_fetch",query="SELECT c FROM Course c JOIN FETCH c.students s JOIN FETCH s.passport p"),
 			@NamedQuery(name="find_course_by_id_where",query="SELECT c FROM Course c WHERE name like '%100'")
 		}
 	)
