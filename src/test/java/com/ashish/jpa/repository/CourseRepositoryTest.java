@@ -64,6 +64,12 @@ class CourseRepositoryTest {
 	void demoEntityManager() {
 		courseRepository.demoEntitymanager();
 	}
+	
+	@Test
+	void secondLevelcacheTest() {
+		Course objUpdatedCourse = courseRepository.findById(1002l);
+		Course objUpdatedCourse1 = courseRepository.findById(1002l);
+	}
 }
 
 

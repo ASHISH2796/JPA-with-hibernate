@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 			@NamedQuery(name="find_course_by_id_where",query="SELECT c FROM Course c WHERE name like '%100'")
 		}
 	)
+@Cacheable
 public class Course {
 	
 	@Id

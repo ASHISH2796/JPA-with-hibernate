@@ -83,4 +83,8 @@ public class CourseRepository {
 			em.persist(review);
 		}		
 	}
+	
+	public void secondLevelcacheTest() {
+		Course objUpdatedCourse = findById(1002l);
+	}
 }
